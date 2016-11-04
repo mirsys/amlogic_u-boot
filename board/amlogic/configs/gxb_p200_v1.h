@@ -65,9 +65,9 @@
 //Enable ir remote wake up for bl30
 #define CONFIG_IR_REMOTE_POWER_UP_KEY_CNT 4
 #define CONFIG_IR_REMOTE_USE_PROTOCOL 0         // 0:nec  1:duokan  2:Toshiba 3:rca 4:rcmm
-#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL1 0XE51AFB04 //amlogic tv ir --- power
-#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL2 0XBB44FB04 //amlogic tv ir --- ch+
-#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL3 0xF20DFE01 //amlogic tv ir --- ch-
+#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL1 0xDE21EF10 //amlogic tv ir --- power 0xDE21EF10
+#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL2 0xBB44EF10 //amlogic tv ir --- ch+	0xBB44EF10
+#define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL3 0xE21DEF10 //amlogic tv ir --- ch-   0xE21DEF10
 #define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL4 0xBA45BD02
 
 #define CONFIG_IR_REMOTE_POWER_UP_KEY_VAL5 0x3ac5bd02
@@ -113,7 +113,7 @@
             "init=/sbin/init console=ttyS0,115200 no_console_suspend earlyprintk=aml-uart,0xc81004c0 ramoops.pstore_en=1 ramoops.record_size=0x8000 ramoops.console_size=0x4000"\
             "\0"\
 	"loaddtb="\
-	     "fatload mmc 0 ${fdt_addr} gxbb_p200_2G.dtb ;fdt addr 0x1000000;" \
+	     "fatload mmc 0 ${fdt_addr} nanopi_k2.dtb ;fdt addr 0x1000000;" \
 	      "\0"\
         "upgrade_check="\
             "echo upgrade_step=${upgrade_step}; "\
@@ -127,7 +127,7 @@
             "run cmdline_keys;"\
             "\0"\
         "sdcardargs="\
-            "setenv bootargs root=UUID=e139ce78-9841-40fe-8823-96a304a09859 rootwait rw console=ttyS0,115200n8 console=tty0 no_console_suspend hdmimode=${hdmimode} m_bpp=32 vout=${outputmode},enable fsck.repair=yes net.ifnames=0 elevator=noop  max_freq=${max_freq} maxcpus=${maxcpus} ;"\
+            "setenv bootargs root=/dev/mmcblk0p2 rootfstype=ext4 rootwait rw console=ttyS0,115200n8 console=tty0 no_console_suspend hdmimode=${hdmimode} m_bpp=32 vout=${outputmode},enable fsck.repair=yes net.ifnames=0 elevator=noop  max_freq=${max_freq} maxcpus=${maxcpus} ;"\
             "\0"\
         "bootupdateargs="\
             "setenv bootargs root=/dev/mmcblk0p1 rootfstype=vfat ${initargs} androidboot.selinux=${EnableSelinux} logo=${display_layer},loaded,${fb_addr},${outputmode} vout=${outputmode},enable hdmimode=${hdmimode} cvbsmode=${cvbsmode} hdmitx=${hdmimode} cvbsdrv=${cvbs_drv} androidboot.firstboot=${firstboot} jtag=${jtag} firmware=rootfs.tar.gz;"\
